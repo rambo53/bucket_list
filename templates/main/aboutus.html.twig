@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} About-us - {{parent()}} {% endblock %}
+
+{% block main %}
+    <h1>about us</h1>
+
+    {% for auteur in tabAuteurs %}
+    <div class="about_us_div">
+        <h2>{{auteur.firstname}} {{auteur.lastname}}</h2>
+        <p>{{auteur.dateOfBirth | date('d/m/Y')}}</p>
+        <p>{{auteur.creatorOf}}</p>
+        <p>{{auteur.description}}</p>
+    </div>
+    {% endfor %}
+
+{% endblock %}

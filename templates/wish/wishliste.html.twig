@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Wish - {{parent()}} {% endblock %}
+
+{% block main %}
+    <div class="wish_div_liste">
+        {% for wish in listWish %}
+
+        <div class="wish_div_global">
+                <div class="wish_div_interieur">
+                    <h2>{{ wish.title }}</h2><br>
+                    <h3>{{wish.categories.name}}</h3>
+                </div>
+                <button><a href="{{ path('wish-details',{'id': wish.id}) }}" >Détails</a></button>
+        </div>
+
+        {% endfor %}
+    </div>
+
+    {{ knp_pagination_render(listWish) }}
+
+{% endblock %}

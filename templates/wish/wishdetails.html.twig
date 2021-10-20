@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Wish-détails - {{parent()}} {% endblock %}
+
+{% block main %}
+
+{% for label, messages in app.flashes %}
+	{% for message in messages %}
+		<div class="alert-{{ label }}">
+		{{ message }}</div>
+	{% endfor %}
+{% endfor %}
+
+    <h1>Details</h1>
+
+    <div class="wish_div_global">
+        <h2>{{ wish.title }}</h2>
+        <h4>Catégorie : {{ wish.categories.name }}</h4>
+        <h5>Auteur : {{ wish.auteur }}</h5>
+        <p>Crée : {{ wish.dateCreated | date('d/m/Y') }}</p>
+
+        {% if wish.description %}
+            <p>{{ wish.description }}</p>
+        {% endif %}
+
+        <div class="details_btn">
+
+            <button> <a href="{{ path('wish-modif',{'id': wish.id}) }}">Modifier</a></button>
+
+            <form method="POST" action="{{ path("wish-delete", {"id" : wish.id}) }}"
+                onSubmit="return confirm('Confirmer suppression?')">
+
+                    <input type="hidden" name="_token" value="{{ csrf_token("supprimerWish" ~ wish.id) }}">																
+                    <button class="btn_sup">Supprimer</button>
+
+                    <input type="hidden" name="_method" value="DELETE">
+
+            </form>
+
+        </div>
+
+    </div>
+
+{% endblock %}

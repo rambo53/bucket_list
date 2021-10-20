@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Wish-Création - {{parent()}} {% endblock %}
+
+{% block main %}
+
+<h1>Création wish</h1>
+
+<div class="div_form">
+
+{% include('wish/_form.html.twig') with {'btn' : 'Créer'} %}
+
+</div>
+
+{% endblock %}
